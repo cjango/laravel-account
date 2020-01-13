@@ -1,0 +1,33 @@
+{
+    "name": "jasonc/account",
+    "description": "账户管理",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "C.Jason",
+            "email": "chenjxlg@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.3",
+        "laravel/framework": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jason\\Account\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jason\\Account\\ServiceProvider"
+            ],
+            "aliases": {
+                "Account": "Jason\\Account\\Facades\\Account",
+                "AccountRule": "Jason\\Account\\Facades\\AccountRule"
+            }
+        }
+    }
+}
