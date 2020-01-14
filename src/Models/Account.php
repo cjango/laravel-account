@@ -21,7 +21,12 @@ class Account extends Model
     {
         $ltZero = $this->logs()->where('frozen', 1)->where('variable', '<', 0)->sum('variable');
 
-        return $this->balance + $ltZero;
+        return number_format(
+            $this->balance + $ltZero,
+            config('account.formats.decimals'),
+            config('account.formats.dec_point'),
+            config('account.formats.thousands_sep')
+        );
     }
 
     /**
@@ -30,9 +35,16 @@ class Account extends Model
      * @Date: 2019/11/28 2:27 下午
      * @return mixed
      */
-    protected function getFrozenAttribute()
+    protected function getFrozenAttribute(): float
     {
-        return $this->logs()->where('frozen', 1)->sum(DB::raw('abs(variable)'));
+        $frozen = $this->logs()->where('frozen', 1)->sum(DB::raw('abs(variable)'));
+
+        return number_format(
+            $frozen,
+            config('account.formats.decimals'),
+            config('account.formats.dec_point'),
+            config('account.formats.thousands_sep')
+        );
     }
 
     /**
@@ -56,7 +68,6 @@ class Account extends Model
     {
         return $this->hasMany(AccountLog::class);
     }
-
 
     /**
      * Notes: 执行账户规则
@@ -189,4 +200,5 @@ class Account extends Model
 
         return true;
     }
+
 }

@@ -21,4 +21,13 @@ return [
         'balance' => '账户余额',
         'score'   => '积分账户',
     ],
+
+    /**
+     * 返回数据格式
+     */
+    'formats'      => [
+        'decimals'      => 2,
+        'dec_point'     => '.',
+        'thousands_sep' => '',
+    ],
 ];
