@@ -73,7 +73,7 @@ class Account extends Model
      * Notes: 执行账户规则
      * @Author: <C.Jason>
      * @Date: 2019/11/28 1:24 下午
-     * @param $rule string|int
+     * @param       $rule string|int
      * @param float $variable
      * @param bool $frozen
      * @param array $source
@@ -164,9 +164,9 @@ class Account extends Model
      * @Author: <C.Jason>
      * @Date: 2019/11/28 1:41 下午
      * @param AccountRule $rule
-     * @param $variable
-     * @param $frozen
-     * @param $source
+     * @param             $variable
+     * @param             $frozen
+     * @param             $source
      * @return bool
      * @throws Exception
      */

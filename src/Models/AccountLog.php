@@ -12,7 +12,9 @@ class AccountLog extends Model
 
     use SoftDeletes;
 
-    protected $casts = [
+    protected $guarded = [];
+
+    protected $casts   = [
         'source' => 'json',
     ];
 

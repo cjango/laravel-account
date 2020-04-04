@@ -18,12 +18,6 @@ trait HasAccount
         self::created(function ($model) {
             $model->account()->create();
         });
-
-        self::retrieved(function ($model) {
-            if (is_null($model->account)) {
-                $model->account()->create();
-            }
-        });
     }
 
     /**
