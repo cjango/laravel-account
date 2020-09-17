@@ -92,7 +92,9 @@ class Account extends Model
      */
     public function rule($rule, float $variable = 0, bool $frozen = true, array $source = [])
     {
-        if (is_numeric($rule)) {
+        if ($rule instanceof AccountRule) {
+
+        } elseif (is_numeric($rule)) {
             $rule = AccountRule::findOrFail($rule);
         } else {
             $rule = AccountRule::where('name', $rule)->firstOrFail();

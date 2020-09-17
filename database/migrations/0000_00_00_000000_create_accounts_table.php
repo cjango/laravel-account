@@ -41,7 +41,7 @@ class CreateAccountsTable extends Migration
             $table->decimal('variable', 20, 2)->default(0);
             $table->integer('trigger')->default(0);
             $table->unsignedTinyInteger('deductions')->default(0);
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
