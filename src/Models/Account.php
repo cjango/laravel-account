@@ -15,7 +15,7 @@ class Account extends Model
         'balance',
         'score',
     ];
-    
+
     /**
      * Notes: 账户可用余额
      * @Author: <C.Jason>
@@ -60,7 +60,7 @@ class Account extends Model
      */
     public function accountable(): MorphTo
     {
-        return $this->morphTo()->withTrashed();
+        return $this->morphTo();
     }
 
     /**
