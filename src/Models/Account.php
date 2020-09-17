@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\DB;
 class Account extends Model
 {
 
+    protected $fillable = [
+        'balance',
+        'score',
+    ];
+    
     /**
      * Notes: 账户可用余额
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 2:26 下午
+     * @Date  : 2019/11/28 2:26 下午
      * @return mixed
      */
     protected function getBalanceUseAttribute()
@@ -32,7 +37,7 @@ class Account extends Model
     /**
      * Notes: 冻结金额
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 2:27 下午
+     * @Date  : 2019/11/28 2:27 下午
      * @return mixed
      */
     protected function getFrozenAttribute(): float
@@ -50,7 +55,7 @@ class Account extends Model
     /**
      * Notes:
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:28 下午
+     * @Date  : 2019/11/28 1:28 下午
      * @return MorphTo
      */
     public function accountable(): MorphTo
@@ -61,7 +66,7 @@ class Account extends Model
     /**
      * Notes: 账户日志
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:28 下午
+     * @Date  : 2019/11/28 1:28 下午
      * @return HasMany
      */
     public function logs(): HasMany
@@ -72,10 +77,10 @@ class Account extends Model
     /**
      * Notes: 执行账户规则
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:24 下午
+     * @Date  : 2019/11/28 1:24 下午
      * @param       $rule string|int
      * @param float $variable
-     * @param bool $frozen
+     * @param bool  $frozen
      * @param array $source
      * @return bool
      * @throws Exception
@@ -91,7 +96,10 @@ class Account extends Model
         if ($rule->trigger == 0) {
             // 不限制执行的
             return $this->accountExecute($rule, $variable, $frozen, $source);
-        } elseif ($rule->trigger > $this->logs()->where('rule_id', $rule->id)->whereDate('created_at', Carbon::today())->count()) {
+        } elseif ($rule->trigger > $this->logs()
+                                        ->where('rule_id', $rule->id)
+                                        ->whereDate('created_at', Carbon::today())
+                                        ->count()) {
             // 每日执行 trigger 次
             return $this->accountExecute($rule, $variable, $frozen, $source);
         } elseif ($rule->trigger < 0 && !$this->logs()->where('rule_id', $rule->id)->first()) {
@@ -105,7 +113,7 @@ class Account extends Model
     /**
      * Notes: 增加账户余额
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:25 下午
+     * @Date  : 2019/11/28 1:25 下午
      * @param $type
      * @param $variable
      * @return bool
@@ -131,7 +139,7 @@ class Account extends Model
     /**
      * Notes: 扣除账户金额
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:25 下午
+     * @Date  : 2019/11/28 1:25 下午
      * @param $type
      * @param $variable
      * @return bool
@@ -162,7 +170,7 @@ class Account extends Model
     /**
      * Notes: 执行账户规则
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:41 下午
+     * @Date  : 2019/11/28 1:41 下午
      * @param AccountRule $rule
      * @param             $variable
      * @param             $frozen

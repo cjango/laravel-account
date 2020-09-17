@@ -17,8 +17,8 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('accountable');
-            $table->decimal('balance', 20, 2)->unsigned();
-            $table->decimal('score', 20, 2)->unsigned();
+            $table->decimal('balance', 20, 2)->default(0)->unsigned();
+            $table->decimal('score', 20, 2)->default(0)->unsigned();
             $table->timestamps();
         });
         Schema::create('account_logs', function (Blueprint $table) {
