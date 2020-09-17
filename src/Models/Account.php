@@ -16,6 +16,11 @@ class Account extends Model
         'score',
     ];
 
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
     /**
      * Notes: 账户可用余额
      * @Author: <C.Jason>

@@ -11,10 +11,15 @@ class AccountRule extends Model
 
     use SoftDeletes;
 
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
     /**
      * Notes:
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:30 下午
+     * @Date  : 2019/11/28 1:30 下午
      * @return HasMany
      */
     public function logs(): HasMany
@@ -25,7 +30,7 @@ class AccountRule extends Model
     /**
      * Notes: 获取触发次数的文字说明
      * @Author: <C.Jason>
-     * @Date: 2019/11/28 1:30 下午
+     * @Date  : 2019/11/28 1:30 下午
      * @return string
      */
     protected function getTriggerTextAttribute()

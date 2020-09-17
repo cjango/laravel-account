@@ -18,6 +18,11 @@ class AccountLog extends Model
         'source' => 'json',
     ];
 
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
     /**
      * Notes: 所属账户
      * @Author: <C.Jason>
